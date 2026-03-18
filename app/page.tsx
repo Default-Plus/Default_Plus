@@ -1,18 +1,31 @@
 "use client";
 
-import React, { Suspense } from 'react';
+import React, { Suspense, useState, useEffect } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { Environment } from '@react-three/drei';
 import Link from 'next/link';
 import AuroraGrid from './components/AuroraGrid'; 
 
 export default function Home() {
+  // 배경 로딩 상태 관리
+  const [isLoaded, setIsLoaded] = useState(false);
+
   return (
-    <div className="min-h-screen bg-black text-white font-sans overflow-hidden relative page-animate">
+    <div 
+      className={`min-h-screen bg-black text-white font-sans overflow-hidden relative transition-opacity duration-1000 ${
+        isLoaded ? 'opacity-100' : 'opacity-0'
+      }`}
+    >
       
-      {/* 배경 레이어 */}
+      {/* 배경 레이어: Canvas의 onCreated를 통해 로딩 완료 시점 파악 */}
       <div className="absolute inset-0 z-0 opacity-60">
-        <Canvas camera={{ position: [0, 8, 20], fov: 60 }}>
+        <Canvas 
+          camera={{ position: [0, 8, 20], fov: 60 }}
+          onCreated={() => {
+            // 브라우저 렌더링 부하를 고려해 100ms 정도 아주 살짝 딜레이 후 노출
+            setTimeout(() => setIsLoaded(true), 100);
+          }}
+        >
           <Suspense fallback={null}>
             <AuroraGrid />
             <Environment preset="night" />
