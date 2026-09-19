@@ -1,6 +1,6 @@
 # Default_Plus Portfolio
 
-Next.js 14 App Router 기반으로 제작된 소프트웨어 엔지니어링 포트폴리오 웹사이트입니다.
+Next.js 14 App Router 기반으로 제작된 소프트웨어 엔지니어링 포트폴리오 웹사이트.
 
 - **Live Site**: [https://default-plus.vercel.app/](https://default-plus.vercel.app/)
 - **Stack**: Next.js 14, TypeScript, Tailwind CSS, Vercel
