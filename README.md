@@ -26,6 +26,14 @@ Next.js 14 App Router 기반으로 제작된 소프트웨어 엔지니어링 포
   - 브라우저 Autoplay Policy 대응 및 메모리 누수 방지 라이프사이클(`ctx.close()`) 관리
   - CSS `clip-path` 기반 물리 영수증 애니메이션 및 `html2canvas` 래스터라이징 PNG 다운로드 지원
 
+### 3. BOWONE Portfolio & CMS Architecture (Collaboration)
+- **Live Demo**: [portfolio-bowone.vercel.app](https://portfolio-bowone.vercel.app/)
+- **Role**: Initial Architecture, Data Migration, CI/CD & Security Review (UI/UX Design & CMS by BOWONE)
+- **Stack**: Next.js, TypeScript, Tailwind CSS, Vercel, GitHub Actions/API
+- **Highlights**:
+  - 270여 개 기존 미디어 자산 및 메타데이터를 정규화된 JSON 스키마로 마이그레이션하여 유지보수성과 렌더링 확장성 확보
+  - GitHub–Vercel 자동 배포 파이프라인 및 비개발자 운영 가이드 구축을 통해 아티스트의 자율적 UI/CMS 고도화 기반 마련
+  - 퍼블릭/프라이빗 레포 분리 구조 설계 및 OAuth 세션 가드·리다이렉트 보안 허점 점검
 ---
 
 ## Project Structure
