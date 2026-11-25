@@ -17,7 +17,7 @@ export default function ProjectsClient() {
     const map: Record<ProjectFilterCategory, number> = {
       All: PROJECTS.length,
       "Product & Web": 0,
-      "AI & RAG": 0,
+      "AI & Research": 0,
       Collaboration: 0,
     };
     for (const p of PROJECTS) {

@@ -39,6 +39,14 @@ Next.js 16 (App Router / Turbopack) + React Three Fiber 기반으로 제작된 �
 - **Role**: Initial Architecture, Data Migration, CI/CD & Security Review (UI/UX & CMS by BOWONE)
 - **Stack**: Next.js, TypeScript, Tailwind CSS, Vercel, CI/CD
 
+### 5. Exam Hub (Structured Exam Quiz & Review Platform)
+- **Live Demo**: [exam-hub-gold.vercel.app](https://exam-hub-gold.vercel.app/)
+- **Stack**: Next.js, TypeScript, Tailwind CSS, Vercel
+
+### 6. NSMC Sentiment Lab (In Progress — NLP Comparative Study)
+- **Topic**: Pretrained Fine-tuned BERT vs. From-Scratch Custom Transformer on NSMC
+- **Stack**: Python, PyTorch, Hugging Face Transformers, NLP
+
 ---
 
 ## Project Structure

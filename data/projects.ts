@@ -1,10 +1,10 @@
 export type ProjectFilterCategory =
   | "All"
   | "Product & Web"
-  | "AI & RAG"
+  | "AI & Research"
   | "Collaboration";
 
-export type ProjectStatus = "Live" | "Active";
+export type ProjectStatus = "Live" | "Active" | "In Progress";
 
 export type ProjectAccent = "blue" | "emerald" | "purple" | "amber";
 
@@ -232,7 +232,7 @@ export const PROJECTS: Project[] = [
     title: "ARCHIVE_CAT",
     subtitle: "Hybrid RAG Knowledge Assistant & Persistent Vector Archive",
     category: "AI / Local RAG Engine",
-    filterCategory: "AI & RAG",
+    filterCategory: "AI & Research",
     status: "Active",
     accent: "purple",
     year: "2026",
@@ -370,12 +370,147 @@ export const PROJECTS: Project[] = [
     techStack: ["Next.js", "TypeScript", "Tailwind CSS", "Vercel", "CI/CD"],
     demoUrl: "https://portfolio-bowone.vercel.app/",
   },
+  {
+    id: "05",
+    slug: "exam-hub",
+    title: "Exam Hub",
+    subtitle: "Structured Exam Quiz & Mistake Review Platform",
+    category: "EdTech / Web App",
+    filterCategory: "Product & Web",
+    status: "Live",
+    accent: "blue",
+    year: "2026",
+    description:
+      "전공 시험 대비를 위한 구조화 퀴즈 풀이, 오답 노트 및 반복 학습 최적화 웹 플랫폼",
+    overview:
+      "PDF와 필기에 흩어진 예상 문제를 반복 학습하기 어려운 비효율을 해결하기 위해 제작한 웹 퀴즈 플랫폼입니다. 과목·단원별 문제 데이터를 구조화하고 즉각적인 채점 피드백과 오답 집중 복습 흐름을 제공해 시험 대비 회독 효율을 높였습니다.",
+    role: "Solo Planning, UI/UX & Frontend Engineering",
+    metrics: [
+      { label: "Core Loop", value: "Quiz → Mistake Note → Retry" },
+      { label: "Deployment", value: "Vercel Edge Static" },
+      { label: "Focus", value: "Fast Mobile & Keyboard UX" },
+    ],
+    highlights: [
+      "과목·단원별 객관식/단답형 문제 데이터를 타입 안전한 JSON 구조로 모델링해 신규 시험 세트 확장성 확보",
+      "오답 자동 수집 및 취약 문항 재풀이(Wrong-Answer Loop) UX 설계로 짧은 시간 내 회독 효율 극대화",
+      "모바일 환경에서도 빠르게 문제를 풀고 해설을 확인할 수 있는 경량 반응형 인터페이스 구현",
+    ],
+    architecture: [
+      {
+        layer: "Question Schema",
+        title: "Typed Subject / Unit Bank",
+        detail:
+          "과목·챕터·정답·해설을 정규화해 새로운 과목 문제집을 선언적으로 추가 가능",
+      },
+      {
+        layer: "Quiz Engine",
+        title: "Session State & Mistake Queue",
+        detail:
+          "풀이 진행률, 정답률 통계, 틀린 문제 필터링 상태를 클라이언트에서 즉각 계산·보존",
+      },
+      {
+        layer: "UX Layer",
+        title: "Distraction-Free Mobile-First UI",
+        detail:
+          "빠른 반복 학습에 최적화된 명료한 시각 위계와 즉시 해설 토글 지원",
+      },
+    ],
+    decisions: [
+      {
+        topic: "학습 상태 유지 방식",
+        considered: "회원가입 및 서버 DB 기반 학습 이력 저장",
+        chosen: "로그인 없는 브라우저 로컬 영속화 + 구조화 문제 은행",
+        rationale:
+          "시험 직전 링크만 열면 곧바로 문제를 풀 수 있도록 진입 마찰을 완전히 제거하는 방향으로 설계했습니다.",
+      },
+    ],
+    troubleshooting: [
+      {
+        problem:
+          "문제 수가 늘어날수록 같은 순서를 기계적으로 외우게 되어 실제 시험 전이 효과가 떨어지는 문제",
+        solution:
+          "문제 및 보기 셔플 모드와 오답 전용 재응시 필터를 결합해 위치 암기가 아닌 개념 인출 중심의 반복 학습이 가능하도록 개선했습니다.",
+      },
+    ],
+    techStack: ["Next.js", "TypeScript", "Tailwind CSS", "Vercel"],
+    demoUrl: "https://exam-hub-gold.vercel.app/",
+  },
+  {
+    id: "06",
+    slug: "nsmc-sentiment-lab",
+    title: "NSMC Sentiment Lab",
+    subtitle: "Pretrained BERT vs. From-Scratch Transformer Comparative Study",
+    category: "AI / NLP Research",
+    filterCategory: "AI & Research",
+    status: "In Progress",
+    accent: "purple",
+    year: "2026",
+    description:
+      "한국어 영화 리뷰(NSMC) 감성 분석을 통한 파인튜닝 BERT와 커스텀 From-Scratch Transformer 비교 연구",
+    overview:
+      "한국어 감성 분석 아키텍처 비교 연구 프로젝트입니다. 대규모 코퍼스로 사전학습된 BERT 파인튜닝 모델과 PyTorch로 바닥부터 직접 구현한 커스텀 Transformer 인코더를 동일 데이터셋(NSMC)에서 대조 실험하며, 정확도뿐만 아니라 학습 효율·추론 레이턴시·어텐션 패턴의 구조적 차이를 정량·정성적으로 분석합니다.",
+    role: "NLP Modeling, Transformer Implementation & Experiment Analysis",
+    metrics: [
+      { label: "Dataset", value: "NSMC (200K Korean Reviews)" },
+      { label: "Models", value: "Fine-tuned BERT vs Custom" },
+      { label: "Evaluation", value: "Accuracy · F1 · Latency" },
+    ],
+    highlights: [
+      "PyTorch 기반 Multi-Head Self-Attention, Positional Encoding, Residual LayerNorm을 포함한 커스텀 Transformer 인코더 From-Scratch 구현",
+      "사전학습 BERT 파인튜닝 모델과의 동일 전처리·평가 프로토콜 설계로 정확도·F1·Epoch당 학습 시간·추론 지연 시간 정량 비교",
+      "한국어 부정 표현·반어적 리뷰에서의 Self-Attention 가중치 시각화 및 오분류 에러 케이스 심층 분석",
+    ],
+    architecture: [
+      {
+        layer: "Data Pipeline",
+        title: "NSMC Preprocessing & Tokenization",
+        detail:
+          "결측/노이즈 정제, 서브워드 토크나이징 및 패딩 마스크 생성으로 두 모델 간 공정한 평가 기준 확립",
+      },
+      {
+        layer: "Track A (Baseline)",
+        title: "Pretrained Korean BERT Fine-tuning",
+        detail:
+          "Hugging Face `AutoModelForSequenceClassification` 기반 Mixed Precision(`bf16`/`fp16`) 학습",
+      },
+      {
+        layer: "Track B (Custom)",
+        title: "From-Scratch PyTorch Transformer",
+        detail:
+          "임베딩·Multi-Head Attention·FFN 블록을 직접 구현해 하이퍼파라미터와 파라미터 효율성 탐색",
+      },
+      {
+        layer: "Evaluation",
+        title: "Metrics, Latency & Attention Analysis",
+        detail:
+          "Accuracy/F1, 추론 속도(ms/sample), 어텐션 히트맵 비교 리포트 도출",
+      },
+    ],
+    decisions: [
+      {
+        topic: "학습 정밀도 및 실험 반복 속도",
+        considered: "기본 FP32 단정밀도 학습",
+        chosen: "Mixed Precision (`bf16`/`fp16`) + 통일된 평가 파이프라인",
+        rationale:
+          "메모리 효율을 높여 대조 실험 반복 속도를 개선하고, 다양한 시퀀스 길이·레이어 깊이 조합을 일관된 기준으로 검증하기 위해 채택했습니다.",
+      },
+    ],
+    troubleshooting: [
+      {
+        problem:
+          "사전학습 가중치가 없는 From-Scratch Transformer에서 초기 학습 불안정 및 빠른 과적합(Overfitting) 발생",
+        solution:
+          "Linear Warmup + Cosine Decay 스케줄러, Attention Dropout, Label Smoothing을 조합해 학습 곡선을 안정화하고 일반화 성능을 개선했습니다.",
+      },
+    ],
+    techStack: ["Python", "PyTorch", "Hugging Face", "BERT", "Transformer", "NLP"],
+  },
 ];
 
 export const PROJECT_FILTERS: ProjectFilterCategory[] = [
   "All",
   "Product & Web",
-  "AI & RAG",
+  "AI & Research",
   "Collaboration",
 ];
 

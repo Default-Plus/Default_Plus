@@ -108,7 +108,6 @@ function SignatureGraphic({ slug }: { slug: string }) {
       );
 
     case "bowone-portfolio":
-    default:
       return (
         <div className="grid w-full max-w-[240px] grid-cols-3 gap-2">
           <div className="col-span-2 flex h-16 flex-col justify-between border border-amber-400/30 bg-amber-500/10 p-2 font-mono text-[8px] text-amber-200">
@@ -120,6 +119,49 @@ function SignatureGraphic({ slug }: { slug: string }) {
           <div className="col-span-2 flex h-10 items-center justify-between border border-white/10 bg-black/60 px-2.5 font-mono text-[8px] text-gray-400">
             <span>CI/CD Pipeline</span>
             <span className="text-emerald-400">Verified</span>
+          </div>
+        </div>
+      );
+
+    case "exam-hub":
+      return (
+        <div className="w-full max-w-[240px] space-y-2.5 border border-white/10 bg-black/55 p-3.5">
+          <div className="flex items-center justify-between text-[9px] font-mono">
+            <span className="text-blue-400">Q.14 / 20</span>
+            <span className="text-emerald-400">92% ACC</span>
+          </div>
+          <div className="h-1 w-full bg-white/10">
+            <div className="h-full w-3/4 bg-blue-500" />
+          </div>
+          <div className="grid grid-cols-2 gap-1.5 pt-1 text-[8px] font-mono text-gray-400">
+            <div className="border border-white/10 px-2 py-1">A. Option</div>
+            <div className="border border-blue-500/50 bg-blue-500/15 px-2 py-1 text-blue-200">
+              B. Correct ✓
+            </div>
+          </div>
+        </div>
+      );
+
+    case "nsmc-sentiment-lab":
+    default:
+      return (
+        <div className="flex items-center gap-4">
+          <div className="grid grid-cols-4 gap-1 border border-white/10 bg-black/55 p-2.5">
+            {[
+              0.9, 0.2, 0.35, 0.15, 0.25, 0.85, 0.4, 0.2, 0.3, 0.5, 0.92, 0.65,
+              0.1, 0.3, 0.7, 0.88,
+            ].map((val, i) => (
+              <div
+                key={i}
+                className="h-3.5 w-3.5 bg-purple-400"
+                style={{ opacity: val }}
+              />
+            ))}
+          </div>
+          <div className="space-y-1 font-mono text-[9px]">
+            <div className="text-purple-300">BERT vs Scratch</div>
+            <div className="text-gray-400">NSMC 200K</div>
+            <div className="text-emerald-400">Attention Map</div>
           </div>
         </div>
       );
