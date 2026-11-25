@@ -1,6 +1,11 @@
 import React from "react";
 import type { Metadata } from "next";
-import { CORE_PRINCIPLES, SITE_CONFIG, SKILL_GROUPS } from "@/data/profile";
+import {
+  CORE_PRINCIPLES,
+  SITE_CONFIG,
+  SKILL_GROUPS,
+  TIMELINE,
+} from "@/data/profile";
 import CopyButton from "../components/CopyButton";
 
 export const metadata: Metadata = {
@@ -46,6 +51,52 @@ export default function AboutPage() {
                 <p className="mt-2.5 text-xs leading-relaxed text-gray-400 md:text-sm">
                   {item.description}
                 </p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* Timeline Section */}
+        <section className="mb-28 border-t border-white/10 pt-20 md:mb-36">
+          <div className="mb-12">
+            <span className="mb-3 block text-[10px] font-mono uppercase tracking-[0.4em] text-blue-500">
+              Timeline
+            </span>
+            <h2 className="text-3xl font-black uppercase tracking-tight md:text-5xl">
+              Background
+            </h2>
+          </div>
+
+          <div className="divide-y divide-white/10 border-y border-white/10">
+            {TIMELINE.map((item) => (
+              <div
+                key={`${item.period}-${item.title}`}
+                className="grid grid-cols-1 gap-4 py-7 transition-colors hover:bg-white/[0.02] md:grid-cols-12 md:items-baseline md:px-4"
+              >
+                <div className="flex items-center gap-3 md:col-span-4">
+                  <span className="border border-white/15 bg-white/[0.04] px-2.5 py-0.5 text-[10px] font-mono uppercase tracking-widest text-emerald-400">
+                    {item.badge}
+                  </span>
+                  <span className="text-xs font-mono text-gray-400">
+                    {item.period}
+                  </span>
+                </div>
+
+                <div className="space-y-1.5 md:col-span-8">
+                  <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+                    <h3 className="text-base font-bold text-white md:text-lg">
+                      {item.title}
+                    </h3>
+                    {item.subtitle && (
+                      <span className="text-xs font-mono text-gray-500">
+                        · {item.subtitle}
+                      </span>
+                    )}
+                  </div>
+                  <p className="text-xs leading-relaxed text-gray-400 md:text-sm">
+                    {item.summary}
+                  </p>
+                </div>
               </div>
             ))}
           </div>

@@ -1,3 +1,11 @@
+export interface TimelineItem {
+  period: string;
+  badge: string;
+  title: string;
+  subtitle?: string;
+  summary: string;
+}
+
 export interface SkillGroup {
   category: string;
   subtitle: string;
@@ -18,6 +26,33 @@ export const SITE_CONFIG = {
   discordCopyValue: "DEFAULT_PLUS",
   version: "v2.1",
 } as const;
+
+export const TIMELINE: TimelineItem[] = [
+  {
+    period: "2024 — Present",
+    badge: "Independent",
+    title: "Independent Developer & Designer",
+    subtitle: "Default_Plus",
+    summary:
+      "웹·크로스플랫폼 프로덕트 기획·설계·개발 및 클라이언트 협업 아키텍처 구축",
+  },
+  {
+    period: "2024.12 — 2025.01",
+    badge: "Experience",
+    title: "IT Operations & Web/Graphic Design",
+    subtitle: "Contract",
+    summary:
+      "사내 IT 시스템 운영 지원 및 웹·그래픽 디자인 실무 수행",
+  },
+  {
+    period: "2022 — Present",
+    badge: "Education",
+    title: "B.S. in AI Convergence",
+    subtitle: "AI Engineering · MIS",
+    summary:
+      "인공지능공학(주트랙)과 경영정보시스템(부트랙)을 기반으로 AI 파이프라인과 프로덕트 설계를 병행 학습",
+  },
+];
 
 export const SKILL_GROUPS: SkillGroup[] = [
   {
