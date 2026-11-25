@@ -1,88 +1,164 @@
-"use client";
+import React from "react";
+import type { Metadata } from "next";
+import { CORE_PRINCIPLES, SITE_CONFIG, SKILL_GROUPS } from "@/data/profile";
+import CopyButton from "../components/CopyButton";
 
-import React, { Suspense } from 'react';
-import { Canvas } from '@react-three/fiber';
-import Link from 'next/link';
-import AuroraGrid from '../components/AuroraGrid';
+export const metadata: Metadata = {
+  title: "About",
+  description:
+    "Default_Plus — Pay attention to the Basics. For your better UX.",
+};
 
 export default function AboutPage() {
   return (
-    /* 수정: overflow-hidden을 삭제하여 스크롤이 가능하게 함 */
-    <div className="min-h-screen bg-black text-white font-sans relative page-animate">
-      
-      {/* 3D Background */}
-      <div className="fixed inset-0 z-0 opacity-15 pointer-events-none">
-        <Canvas camera={{ position: [0, 15, 30], fov: 60 }}>
-          <Suspense fallback={null}>
-            <AuroraGrid />
-          </Suspense>
-        </Canvas>
-      </div>
-
-      {/* Navigation: z-index를 높이고 pointer-events 설정을 정리 */}
-      <nav className="fixed top-0 w-full z-50 flex justify-between items-center p-10">
-        <Link href="/" className="text-xl font-black tracking-tighter hover:text-blue-500 transition-colors">
-          DEFAULT<span className="text-blue-500">_</span>PLUS
-        </Link>
-        <Link href="/" className="text-[10px] font-bold tracking-widest text-gray-500 uppercase hover:text-white transition-colors">
-          Exit
-        </Link>
-      </nav>
-
-      {/* Main Content */}
-      <main className="relative z-20 pt-48 pb-32 px-10 md:px-20 max-w-6xl mx-auto">
-        
+    <div className="min-h-screen page-animate">
+      <main className="mx-auto max-w-6xl px-6 pt-36 pb-28 md:px-12 md:pt-44">
         {/* Identity Section */}
-        <section className="mb-48">
-          <div className="text-[10px] font-mono tracking-[0.6em] text-emerald-500 uppercase mb-8">
+        <section className="mb-28 md:mb-36">
+          <div className="mb-8 text-[10px] font-mono uppercase tracking-[0.6em] text-emerald-500">
             CORE VALUE
           </div>
-          <h2 className="text-5xl md:text-8xl font-black tracking-tighter leading-[0.9] mb-12">
-            DESIGNING <br /> THE <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-blue-500">NEW STANDARD.</span>
-          </h2>
-          <p className="text-xl md:text-3xl text-gray-400 font-light leading-relaxed max-w-4xl">
-            Pay attention to the <strong>BASICS</strong>. <br />
-            For your better <strong>UX</strong>.
+          <h1 className="mb-12 text-5xl font-black leading-[0.9] tracking-tighter md:text-8xl">
+            DESIGNING <br /> THE{" "}
+            <span className="bg-gradient-to-r from-emerald-400 to-blue-500 bg-clip-text text-transparent">
+              NEW STANDARD.
+            </span>
+          </h1>
+          <p className="max-w-4xl text-xl font-light leading-relaxed text-gray-400 md:text-3xl">
+            Pay attention to the <strong className="font-bold text-white">BASICS</strong>.{" "}
+            <br />
+            For your better <strong className="font-bold text-white">UX</strong>.
           </p>
+
+          {/* 3 Core Principles */}
+          <div className="mt-16 grid grid-cols-1 gap-5 md:grid-cols-3">
+            {CORE_PRINCIPLES.map((item) => (
+              <div
+                key={item.index}
+                className="border border-white/10 bg-zinc-950/75 p-6 transition-colors hover:border-blue-500/40"
+              >
+                <div className="text-[10px] font-mono uppercase tracking-[0.3em] text-blue-400">
+                  Principle {item.index}
+                </div>
+                <h2 className="mt-3 text-lg font-bold text-white">
+                  {item.title}
+                </h2>
+                <p className="mt-2.5 text-xs leading-relaxed text-gray-400 md:text-sm">
+                  {item.description}
+                </p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* Tech Stack Matrix */}
+        <section className="mb-28 border-t border-white/10 pt-20 md:mb-36">
+          <div className="mb-12">
+            <span className="mb-3 block text-[10px] font-mono uppercase tracking-[0.4em] text-blue-500">
+              Capabilities
+            </span>
+            <h2 className="text-3xl font-black uppercase tracking-tight md:text-5xl">
+              Tech Stack
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+            {SKILL_GROUPS.map((group) => (
+              <div
+                key={group.category}
+                className="flex flex-col justify-between border border-white/10 bg-zinc-950/75 p-6 md:p-7"
+              >
+                <div>
+                  <h3 className="text-base font-bold text-white md:text-lg">
+                    {group.category}
+                  </h3>
+                  <p className="mt-1.5 text-xs leading-relaxed text-gray-400">
+                    {group.subtitle}
+                  </p>
+                </div>
+
+                <div className="mt-6 flex flex-wrap gap-2">
+                  {group.items.map((skill) => (
+                    <span
+                      key={skill}
+                      className="border border-white/10 bg-white/[0.04] px-2.5 py-1 text-[11px] font-mono text-gray-200"
+                    >
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
         </section>
 
         {/* Contact Section */}
-        <section className="grid grid-cols-1 md:grid-cols-2 gap-24 pt-24 border-t border-white/10">
+        <section className="grid grid-cols-1 gap-16 border-t border-white/10 pt-20 md:grid-cols-2 md:gap-24">
           <div>
-            <span className="text-[10px] font-mono text-blue-500 tracking-[0.4em] uppercase mb-8 block">Contact</span>
-            <h3 className="text-4xl md:text-6xl font-black tracking-tighter uppercase leading-tight">
+            <span className="mb-8 block text-[10px] font-mono uppercase tracking-[0.4em] text-blue-500">
+              Contact
+            </span>
+            <h2 className="text-4xl font-black uppercase leading-tight tracking-tighter md:text-6xl">
               Always <br /> Anywhere
-            </h3>
+            </h2>
           </div>
-          
+
           <div className="space-y-12">
             <div className="group">
-              <span className="text-[9px] text-gray-600 uppercase tracking-[0.3em] block mb-4">Email</span>
-              <a 
-                href="mailto:default_plus@naver.com" 
-                className="text-2xl md:text-4xl font-bold hover:text-blue-500 transition-all duration-300 border-b border-transparent hover:border-blue-500 pb-2"
-              >
-                default_plus@naver.com
-              </a>
+              <span className="mb-4 block text-[9px] uppercase tracking-[0.3em] text-gray-500">
+                Email
+              </span>
+              <div className="flex flex-wrap items-center gap-4">
+                <a
+                  href={`mailto:${SITE_CONFIG.email}`}
+                  className="border-b border-transparent pb-2 text-2xl font-bold transition-all duration-300 hover:border-blue-500 hover:text-blue-500 md:text-3xl"
+                >
+                  {SITE_CONFIG.email}
+                </a>
+                <CopyButton
+                  value={SITE_CONFIG.email}
+                  label="Copy"
+                  toastText={`Email copied: ${SITE_CONFIG.email}`}
+                />
+              </div>
             </div>
-            
-            <div className="flex gap-16">
+
+            <div className="flex flex-wrap gap-12 sm:gap-16">
               <div className="group">
-                <span className="text-[9px] text-gray-600 uppercase tracking-[0.3em] block mb-4">GitHub</span>
-                <a href="#" className="text-sm font-bold hover:text-emerald-500 transition-colors tracking-widest">@DEFAULT_PLUS</a>
+                <span className="mb-4 block text-[9px] uppercase tracking-[0.3em] text-gray-500">
+                  GitHub
+                </span>
+                <a
+                  href={SITE_CONFIG.githubUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm font-bold tracking-widest transition-colors hover:text-emerald-500"
+                >
+                  {SITE_CONFIG.githubHandle} ↗
+                </a>
               </div>
               <div className="group">
-                <span className="text-[9px] text-gray-600 uppercase tracking-[0.3em] block mb-4">Discord</span>
-                <a href="#" className="text-sm font-bold hover:text-emerald-500 transition-colors tracking-widest">@DEFAULT_PLUS</a>
+                <span className="mb-4 block text-[9px] uppercase tracking-[0.3em] text-gray-500">
+                  Discord
+                </span>
+                <div className="flex items-center gap-3">
+                  <span className="text-sm font-bold tracking-widest">
+                    {SITE_CONFIG.discordHandle}
+                  </span>
+                  <CopyButton
+                    value={SITE_CONFIG.discordCopyValue}
+                    label="Copy"
+                    toastText={`Discord copied: ${SITE_CONFIG.discordHandle}`}
+                  />
+                </div>
               </div>
             </div>
           </div>
         </section>
       </main>
 
-      {/* Footer */}
-      <footer className="relative z-20 p-10 text-center text-[9px] font-mono text-gray-700 tracking-[0.5em] uppercase">
-        © 2026 Crafted by Default_Plus
+      <footer className="p-10 text-center font-mono text-[9px] uppercase tracking-[0.5em] text-gray-700">
+        © 2026 Crafted by {SITE_CONFIG.handle}
       </footer>
     </div>
   );
