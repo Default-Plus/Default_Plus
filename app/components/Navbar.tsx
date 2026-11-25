@@ -68,9 +68,22 @@ export default function Navbar() {
             type="button"
             onClick={openPalette}
             aria-label="Open quick search palette"
-            className="hidden sm:inline-flex items-center gap-1.5 border border-white/10 bg-white/[0.03] px-2.5 py-1 text-[10px] font-mono tracking-wider text-gray-400 transition-all hover:border-blue-500/40 hover:bg-white/[0.07] hover:text-white"
+            className="hidden sm:inline-flex items-center gap-1 border border-white/10 bg-white/[0.03] px-2.5 py-1 text-[10px] font-mono tracking-wider text-gray-400 transition-all hover:border-blue-500/40 hover:bg-white/[0.07] hover:text-white"
           >
-            <span>Ctrl K</span>
+            <svg
+              width="11"
+              height="11"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2.2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              aria-hidden="true"
+            >
+              <path d="M15 6v12a3 3 0 1 0 3-3H6a3 3 0 1 0 3 3V6a3 3 0 1 0-3 3h12a3 3 0 1 0-3-3" />
+            </svg>
+            <span>K</span>
           </button>
         </div>
       </nav>
