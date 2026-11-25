@@ -11,6 +11,7 @@ Next.js 14 App Router 기반으로 제작된 소프트웨어 엔지니어링 포
 
 ### 1. 여백 / Yeobaek (Local-First Minimal Productivity App)
 - **Repository**: [Default-Plus/yeobaek](https://github.com/Default-Plus/yeobaek)
+- **Live Demo**: [yeobaek-theta.vercel.app](https://yeobaek-theta.vercel.app/)
 - **Releases**: [Windows `.exe` & Android `.apk`](https://github.com/Default-Plus/yeobaek/releases)
 - **Role**: Solo Product Design, Architecture & Multi-Platform Engineering
 - **Stack**: Next.js 15, TypeScript, Tailwind CSS, Dexie.js, Tiptap, Google Drive API v3, Electron, Capacitor

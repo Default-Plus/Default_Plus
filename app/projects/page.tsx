@@ -51,6 +51,7 @@ export default function ProjectsPage() {
       ],
       techStack: ["Next.js 15", "TypeScript", "Dexie.js", "Tiptap", "Google Drive API", "Electron", "Capacitor"],
       githubUrl: "https://github.com/Default-Plus/yeobaek",
+      demoUrl: "https://yeobaek-theta.vercel.app/",
       releaseUrl: "https://github.com/Default-Plus/yeobaek/releases",
     },
     {
@@ -172,8 +173,8 @@ export default function ProjectsPage() {
                 </p>
               </div>
 
-              <div className="flex items-center justify-between mt-4 pt-4 border-t border-white/5">
-                <div className="flex items-center gap-6">
+              <div className="flex items-center justify-between gap-4 mt-4 pt-4 border-t border-white/5">
+                <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
                   {item.githubUrl && (
                     <a
                       href={item.githubUrl}
@@ -199,7 +200,7 @@ export default function ProjectsPage() {
                       href={item.releaseUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-xs font-mono font-bold text-blue-400 hover:text-blue-300 uppercase tracking-wider transition-colors flex items-center gap-1.5"
+                      className="text-xs font-mono font-bold text-emerald-400 hover:text-emerald-300 uppercase tracking-wider transition-colors flex items-center gap-1.5"
                     >
                       Releases ↗
                     </a>
@@ -314,7 +315,7 @@ export default function ProjectsPage() {
                   href={selectedProject.releaseUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-xs font-mono font-bold text-blue-400 hover:text-blue-300 uppercase tracking-wider"
+                  className="text-xs font-mono font-bold text-emerald-400 hover:text-emerald-300 uppercase tracking-wider"
                 >
                   Releases (.exe / .apk) ↗
                 </a>
