@@ -1,6 +1,6 @@
 "use client";
 
-import React, { Suspense, useState } from 'react';
+import React, { Suspense, useEffect, useState } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { Environment } from '@react-three/drei';
 import Link from 'next/link';
@@ -18,15 +18,43 @@ interface Project {
   techStack: string[];
   githubUrl?: string;
   demoUrl?: string;
+  releaseUrl?: string;
   notionUrl?: string;
 }
 
 export default function ProjectsPage() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
+  useEffect(() => {
+    if (!selectedProject) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setSelectedProject(null);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [selectedProject]);
+
   const projects: Project[] = [
     {
       id: "01",
+      title: "여백 (Yeobaek)",
+      category: "Local-First / Cross-Platform App",
+      year: "2026",
+      description: "타이포그래피 중심의 Local-First 미니멀 글쓰기 & 개인 생산성 앱 (Web · Windows · Android/iOS)",
+      role: "Solo Product Design, Architecture & Multi-Platform Engineering",
+      highlights: [
+        "Dexie.js(IndexedDB) 로컬 우선 저장소와 Google Drive API v3(appDataFolder) 3-Way 메타데이터 Diff 동기화 엔진 구축 및 오프라인 동시 수정 시 충돌 사본 자동 보존",
+        "웹/데스크탑(GIS)과 네이티브 모바일(RFC 7636 OAuth 2.0 PKCE + 시스템 브라우저) 크로스플랫폼 인증 및 Tiptap 인라인 체크리스트·날짜 트리거 에디터 구현",
+        "단일 Next.js 코드베이스 기반 Electron(로컬 정적 서버·자동 업데이트) 및 Capacitor(Android/iOS) 패키징과 GitHub Actions 통합 릴리즈(.exe / .apk) 자동화"
+      ],
+      techStack: ["Next.js 15", "TypeScript", "Dexie.js", "Tiptap", "Google Drive API", "Electron", "Capacitor"],
+      githubUrl: "https://github.com/Default-Plus/yeobaek",
+      releaseUrl: "https://github.com/Default-Plus/yeobaek/releases",
+    },
+    {
+      id: "02",
       title: "Café De Receipt",
       category: "Interactive / Web Audio",
       year: "2026",
@@ -42,7 +70,7 @@ export default function ProjectsPage() {
       demoUrl: "https://cafe-de-receipt.vercel.app/",
     },
     {
-      id: "02",
+      id: "03",
       title: "ARCHIVE_CAT",
       category: "AI / Local RAG Engine",
       year: "2026",
@@ -57,7 +85,7 @@ export default function ProjectsPage() {
       githubUrl: "https://github.com/Default-Plus/archive-cat-rag",
     },
     {
-      id: "03",
+      id: "04",
       title: "BOWONE Portfolio",
       category: "Web Architecture / Collaboration",
       year: "2026",
@@ -115,7 +143,7 @@ export default function ProjectsPage() {
                   
                   <div className="flex justify-between items-center z-10">
                     <span className="text-[10px] font-mono text-emerald-400 uppercase tracking-widest">
-                      {item.id} // {item.category}
+                      {item.id} {'//'} {item.category}
                     </span>
                     <span className="text-[10px] font-mono text-gray-500">{item.year}</span>
                   </div>
@@ -166,6 +194,16 @@ export default function ProjectsPage() {
                       Live Demo ↗
                     </a>
                   )}
+                  {item.releaseUrl && (
+                    <a
+                      href={item.releaseUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-xs font-mono font-bold text-blue-400 hover:text-blue-300 uppercase tracking-wider transition-colors flex items-center gap-1.5"
+                    >
+                      Releases ↗
+                    </a>
+                  )}
                   {item.notionUrl && (
                     <a
                       href={item.notionUrl}
@@ -198,12 +236,12 @@ export default function ProjectsPage() {
         >
           <div
             onClick={(e) => e.stopPropagation()}
-            className="bg-zinc-950 border border-white/15 max-w-2xl w-full p-8 md:p-10 relative space-y-6"
+            className="bg-zinc-950 border border-white/15 max-w-2xl w-full max-h-[90vh] overflow-y-auto p-8 md:p-10 relative space-y-6"
           >
             <div className="flex justify-between items-start">
               <div>
                 <span className="text-[10px] font-mono text-emerald-400 uppercase tracking-widest">
-                  {selectedProject.id} // {selectedProject.category}
+                  {selectedProject.id} {'//'} {selectedProject.category}
                 </span>
                 <h3 className="text-3xl font-black tracking-tight mt-1">{selectedProject.title}</h3>
               </div>
@@ -250,7 +288,7 @@ export default function ProjectsPage() {
               ))}
             </div>
 
-            <div className="flex items-center gap-6 pt-4 border-t border-white/10">
+            <div className="flex flex-wrap items-center gap-6 pt-4 border-t border-white/10">
               {selectedProject.githubUrl && (
                 <a
                   href={selectedProject.githubUrl}
@@ -269,6 +307,16 @@ export default function ProjectsPage() {
                   className="text-xs font-mono font-bold text-blue-400 hover:text-blue-300 uppercase tracking-wider"
                 >
                   Live Deployment ↗
+                </a>
+              )}
+              {selectedProject.releaseUrl && (
+                <a
+                  href={selectedProject.releaseUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-xs font-mono font-bold text-blue-400 hover:text-blue-300 uppercase tracking-wider"
+                >
+                  Releases (.exe / .apk) ↗
                 </a>
               )}
               {selectedProject.notionUrl && (

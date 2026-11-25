@@ -9,7 +9,17 @@ Next.js 14 App Router 기반으로 제작된 소프트웨어 엔지니어링 포
 
 ## Key Projects Showcase
 
-### 1. ARCHIVE_CAT (Hybrid RAG Knowledge Assistant)
+### 1. 여백 / Yeobaek (Local-First Minimal Productivity App)
+- **Repository**: [Default-Plus/yeobaek](https://github.com/Default-Plus/yeobaek)
+- **Releases**: [Windows `.exe` & Android `.apk`](https://github.com/Default-Plus/yeobaek/releases)
+- **Role**: Solo Product Design, Architecture & Multi-Platform Engineering
+- **Stack**: Next.js 15, TypeScript, Tailwind CSS, Dexie.js, Tiptap, Google Drive API v3, Electron, Capacitor
+- **Highlights**:
+  - Dexie.js(IndexedDB) 로컬 우선 저장소와 Google Drive API v3(`appDataFolder`) 3-Way 메타데이터 Diff 동기화 엔진 구축 및 오프라인 동시 수정 시 충돌 사본 자동 보존
+  - 웹/데스크탑(GIS)과 네이티브 모바일(RFC 7636 OAuth 2.0 PKCE + 시스템 브라우저) 크로스플랫폼 인증 및 Tiptap 인라인 체크리스트·날짜 트리거 에디터 구현
+  - 단일 Next.js 코드베이스 기반 Electron(로컬 정적 서버·`electron-updater`) 및 Capacitor(Android/iOS) 패키징과 GitHub Actions 통합 릴리즈 자동화
+
+### 2. ARCHIVE_CAT (Hybrid RAG Knowledge Assistant)
 - **Repository**: [Default-Plus/archive-cat-rag](https://github.com/Default-Plus/archive-cat-rag)
 - **Stack**: Python 3.14, ChromaDB (Persistent), Sentence-Transformers, Google Gemini API, Discord.py
 - **Highlights**:
@@ -17,7 +27,7 @@ Next.js 14 App Router 기반으로 제작된 소프트웨어 엔지니어링 포
   - 디스크 기반 영구 벡터 저장소(`PersistentClient`) 구축으로 세션 재부팅 후에도 지식 영속성 보장
   - 런타임 지식 동적 인덱싱, 로컬 문서 동기화, LIFO 기반 롤백(`!학습취소`) 파이프라인 구현
 
-### 2. Café De Receipt (Interactive Web Audio Mixer)
+### 3. Café De Receipt (Interactive Web Audio Mixer)
 - **Repository**: [Default-Plus/Cafe_De_Receipt](https://github.com/Default-Plus/Cafe_De_Receipt)
 - **Live Demo**: [cafe-de-receipt.vercel.app](https://cafe-de-receipt.vercel.app/)
 - **Stack**: Next.js 14, TypeScript, Web Audio API, Tailwind CSS, html2canvas
@@ -26,7 +36,7 @@ Next.js 14 App Router 기반으로 제작된 소프트웨어 엔지니어링 포
   - 브라우저 Autoplay Policy 대응 및 메모리 누수 방지 라이프사이클(`ctx.close()`) 관리
   - CSS `clip-path` 기반 물리 영수증 애니메이션 및 `html2canvas` 래스터라이징 PNG 다운로드 지원
 
-### 3. BOWONE Portfolio & CMS Architecture (Collaboration)
+### 4. BOWONE Portfolio & CMS Architecture (Collaboration)
 - **Live Demo**: [portfolio-bowone.vercel.app](https://portfolio-bowone.vercel.app/)
 - **Role**: Initial Architecture, Data Migration, CI/CD & Security Review (UI/UX Design & CMS by BOWONE)
 - **Stack**: Next.js, TypeScript, Tailwind CSS, Vercel, GitHub Actions/API
