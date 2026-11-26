@@ -11,7 +11,7 @@ Next.js 16 (App Router / Turbopack) + React Three Fiber 기반으로 제작된 �
 ## Architecture Highlights
 
 - **Persistent Interactive 3D Aurora (`PersistentScene` + `AuroraGrid`)**: `app/layout.tsx` 레벨의 영구 WebGL 컨텍스트로 페이지 전환 시 카메라 포지션만 부드럽게 보간되며, 모바일 경량화·`dispose()` 메모리 해제·`prefers-reduced-motion` 및 CSS 오로라 폴백을 지원합니다.
-- **Dedicated Case Study Routes (`/projects/[slug]`)**: `data/projects.ts` 기반 정적 생성(`generateStaticParams`)과 프로젝트별 동적 메타데이터(`generateMetadata`), 시스템 아키텍처·트레이드오프·트러블슈팅 섹션을 제공합니다.
+- **Dedicated Case Study Routes (`/projects/[slug]`)**: `data/projects.ts` 기반 정적 생성(`generateStaticParams`)과 프로젝트별 동적 메타데이터(`generateMetadata`), 시스템 아키텍처·트레이드오프·트러블슈팅·향후 로드맵 섹션을 제공합니다.
 - **Quick Command Palette (`Ctrl+K`)**: 빠른 페이지 이동, 프로젝트 검색, 이메일 복사, 3D 배경 토글을 지원합니다.
 - **SEO & Dynamic OG**: `app/opengraph-image.tsx`, `app/sitemap.ts`, `app/robots.ts`를 내장합니다.
 
@@ -25,25 +25,30 @@ Next.js 16 (App Router / Turbopack) + React Three Fiber 기반으로 제작된 �
 - **Releases**: [Windows `.exe` & Android `.apk`](https://github.com/Default-Plus/yeobaek/releases)
 - **Stack**: Next.js 15, TypeScript, Dexie.js, Tiptap, Google Drive API v3, Electron, Capacitor
 
-### 2. Café De Receipt (Interactive Web Audio Mixer)
+### 2. 셈 / Sem (3-Second Quick Entry & Local-First Personal Ledger PWA)
+- **Repository**: [Default-Plus/sem-ledger](https://github.com/Default-Plus/sem-ledger)
+- **Live Demo**: [sem-ledger.vercel.app](https://sem-ledger.vercel.app/)
+- **Stack**: Next.js 15, TypeScript, Tailwind CSS, Dexie.js (IndexedDB), PWA
+
+### 3. Café De Receipt (Interactive Web Audio Mixer)
 - **Repository**: [Default-Plus/Cafe_De_Receipt](https://github.com/Default-Plus/Cafe_De_Receipt)
 - **Live Demo**: [cafe-de-receipt.vercel.app](https://cafe-de-receipt.vercel.app/)
 - **Stack**: Next.js 14, TypeScript, Web Audio API, Tailwind CSS, html2canvas
 
-### 3. ARCHIVE_CAT (Hybrid RAG Knowledge Assistant)
+### 4. ARCHIVE_CAT (Hybrid RAG Knowledge Assistant)
 - **Repository**: [Default-Plus/archive-cat-rag](https://github.com/Default-Plus/archive-cat-rag)
 - **Stack**: Python, ChromaDB (Persistent), Sentence-Transformers, Gemini API, Discord.py
 
-### 4. BOWONE Portfolio & CMS Architecture (Collaboration)
+### 5. BOWONE Portfolio & CMS Architecture (Collaboration)
 - **Live Demo**: [portfolio-bowone.vercel.app](https://portfolio-bowone.vercel.app/)
 - **Role**: Initial Architecture, Data Migration, CI/CD & Security Review (UI/UX & CMS by BOWONE)
 - **Stack**: Next.js, TypeScript, Tailwind CSS, Vercel, CI/CD
 
-### 5. Exam Hub (Structured Exam Quiz & Review Platform)
+### 6. Exam Hub (Structured Exam Quiz & Review Platform)
 - **Live Demo**: [exam-hub-gold.vercel.app](https://exam-hub-gold.vercel.app/)
 - **Stack**: Next.js, TypeScript, Tailwind CSS, Vercel
 
-### 6. NSMC Sentiment Lab (In Progress — NLP Comparative Study)
+### 7. NSMC Sentiment Lab (In Progress — NLP Comparative Study)
 - **Topic**: Pretrained Fine-tuned BERT vs. From-Scratch Custom Transformer on NSMC
 - **Stack**: Python, PyTorch, Hugging Face Transformers, NLP
 
