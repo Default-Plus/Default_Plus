@@ -26,6 +26,12 @@ export interface TroubleshootingItem {
   solution: string;
 }
 
+export interface RoadmapItem {
+  phase: string;
+  title: string;
+  detail: string;
+}
+
 export interface Project {
   id: string;
   slug: string;
@@ -45,6 +51,7 @@ export interface Project {
   architecture: ArchitectureStep[];
   decisions: EngineeringDecision[];
   troubleshooting: TroubleshootingItem[];
+  roadmap?: RoadmapItem[];
   techStack: string[];
   githubUrl?: string;
   demoUrl?: string;
@@ -151,6 +158,118 @@ export const PROJECTS: Project[] = [
   },
   {
     id: "02",
+    slug: "sem-ledger",
+    title: "셈 (Sem)",
+    subtitle: "3-Second Natural-Language Quick Entry & Local-First Personal Ledger PWA",
+    category: "Fintech Utility / Local-First PWA",
+    filterCategory: "Product & Web",
+    status: "Live",
+    accent: "blue",
+    year: "2026",
+    description:
+      "결제 직후 3초 만에 한 줄로 기록하는 Local-First 개인 가계부 PWA (자연어 파서 · 소비 캘린더 · 커스텀 SVG 차트)",
+    overview:
+      "카테고리·날짜·결제수단을 매번 선택해야 하는 기존 가계부의 입력 마찰을 줄이고, 개인 금융 데이터를 외부 서버에 맡기지 않기 위해 설계한 오프라인 우선(Local-First) 가계부 PWA입니다. 외부 LLM API 없이 0ms로 동작하는 한국어 자연어 파서와 Dexie(IndexedDB) 기반 StorageAdapter 추상화를 결합해, 모바일 3초 기록과 데스크탑 월간 분석을 단일 웹 앱에서 완결했습니다.",
+    role: "Solo Product Design, Brand Identity & Frontend Architecture",
+    metrics: [
+      { label: "Quick Parser", value: "0ms Client Rule Engine" },
+      { label: "Storage Layer", value: "IndexedDB + Adapter Pattern" },
+      { label: "Bundle Size", value: "159 kB First Load JS" },
+    ],
+    highlights: [
+      "\"어제 초밥 1.8만\", \"+18.5만 급여\", \"#모임 선물 3만\" 등 한국어 구어체·단위(만/천)·상대 날짜를 외부 API 없이 0ms로 분해하는 클라이언트 자연어 퀵 입력 파서 구현",
+      "모든 데이터 접근을 StorageAdapter 인터페이스로 추상화한 Dexie(IndexedDB) 로컬 저장소 설계 및 JSON 백업/복원(병합·덮어쓰기)·UTF-8 BOM CSV 내보내기 지원",
+      "차트 라이브러리 의존 없는 반응형 커스텀 SVG 일별 막대·카테고리 도넛 차트, 토스 스타일 월간 소비 캘린더(무지출 데이 집계), 옵시디언 미니멀 SVG 브랜드 아이콘 직접 제작",
+    ],
+    architecture: [
+      {
+        layer: "Quick Parser",
+        title: "Zero-Latency Korean NL Rule Engine",
+        detail:
+          "날짜 토큰(오늘/어제/MM월 DD일) 선추출 → 복합 금액 단위(1.8만·18만5천) 파싱 → 키워드·해시태그 기반 카테고리/수입·지출 자동 추론",
+      },
+      {
+        layer: "Storage Abstraction",
+        title: "StorageAdapter → IndexedDB (Dexie.js)",
+        detail:
+          "UI와 영속 계층을 인터페이스로 분리해 현재는 브라우저 IndexedDB로 무비용 오프라인 동작하며 향후 클라우드 어댑터 교체 대비",
+      },
+      {
+        layer: "Analytics & Calendar",
+        title: "Custom SVG Charts & Monthly Calendar",
+        detail:
+          "월 예산 진척률·하루 권장 가용액, 클릭 필터링 연동 일별 지출 추이·도넛 차트 및 날짜별 수입/지출 소비 캘린더 제공",
+      },
+      {
+        layer: "PWA & Theme",
+        title: "Offline Service Worker & Anti-FOUC Dark UI",
+        detail:
+          "모바일 홈 화면 설치용 Web App Manifest·서비스 워커 및 하이드레이션 깜빡임 없는 다크/라이트 테마 시스템 구성",
+      },
+    ],
+    decisions: [
+      {
+        topic: "자연어 입력 파싱 방식",
+        considered: "LLM API 호출 기반 텍스트 분류",
+        chosen: "클라이언트 정규식·키워드 점수 기반 규칙 엔진",
+        rationale:
+          "결제 직후 3초 기록 UX에서는 네트워크 지연(1~2초)과 API 비용·키 관리가 가장 큰 병목입니다. 클라이언트 0ms 파싱 + 실시간 미리보기 칩 오버라이드 조합으로 속도와 정확도를 동시에 확보했습니다.",
+      },
+      {
+        topic: "초기 데이터 저장 전략",
+        considered: "초기부터 인증·중앙 DB 서버(Supabase 등) 연동",
+        chosen: "Local-First IndexedDB + StorageAdapter 추상화 + JSON 백업",
+        rationale:
+          "로그인 마찰 없이 즉시 실행·체험할 수 있는 완성도를 우선하고, 저장 계층을 어댑터 인터페이스로 격리해 향후 Google Drive API나 Supabase 동기화를 UI 수정 없이 붙일 수 있도록 설계했습니다.",
+      },
+    ],
+    troubleshooting: [
+      {
+        problem:
+          "\"GS25 생수 1200\"이나 \"11/24 넷플릭스 13500\"처럼 브랜드명·날짜에 포함된 숫자가 금액으로 오인식되는 엣지 케이스",
+        solution:
+          "날짜 표현식을 금액 파싱 전에 선제 추출·제거하고, 금액 매칭을 공백 경계 독립 토큰과 단위 우선순위(복합 만/천 → 단일 단위 → 원/부호 포함 숫자)로 분리해 오인식을 차단했습니다.",
+      },
+      {
+        problem:
+          "Next.js 프로덕션 빌드 시 외부 Google Fonts 다운로드 의존성으로 인해 오프라인·제한 네트워크 환경에서 빌드가 실패하는 문제",
+        solution:
+          "오프라인 안전 Pretendard + 시스템 폰트 폴백과 CSS `tabular-nums` 정렬로 전환해 어떤 환경에서도 정적 프리렌더링 빌드가 안정적으로 통과하도록 개선했습니다.",
+      },
+    ],
+    roadmap: [
+      {
+        phase: "Next 01 · Sync",
+        title: "멀티 디바이스 클라우드 동기화 (`StorageAdapter` 확장)",
+        detail:
+          "여백(Yeobaek)에서 검증한 Google Drive `appDataFolder` 동기화 어댑터 또는 Supabase 어댑터를 연결해 PC와 모바일 간 실시간 데이터 동기화 지원",
+      },
+      {
+        phase: "Next 02 · Automation",
+        title: "고정비·정기 구독 자동 반복 등록",
+        detail:
+          "통신비·교통 정기권·구독료 등 매월 반복 지출의 예정일 관리 및 월 예산 가용액(Safe-to-Spend) 사전 차감 로직 추가",
+      },
+      {
+        phase: "Next 03 · Mobile Frictionless",
+        title: "안드로이드 루틴·단축어 기반 원탭 입력 연동",
+        detail:
+          "결제 알림 발생 시 URL 쿼리 파라미터로 금액·가맹점 텍스트를 PWA 입력창에 자동 프리필하는 모바일 퀵 런처 워크플로우 확장",
+      },
+    ],
+    techStack: [
+      "Next.js 15",
+      "TypeScript",
+      "Tailwind CSS",
+      "Dexie.js",
+      "IndexedDB",
+      "PWA",
+    ],
+    githubUrl: "https://github.com/Default-Plus/sem-ledger",
+    demoUrl: "https://sem-ledger.vercel.app/",
+  },
+  {
+    id: "03",
     slug: "cafe-de-receipt",
     title: "Café De Receipt",
     subtitle: "Interactive Web Audio Ambient Mixer & Receipt Printer",
@@ -229,7 +348,7 @@ export const PROJECTS: Project[] = [
     demoUrl: "https://cafe-de-receipt.vercel.app/",
   },
   {
-    id: "03",
+    id: "04",
     slug: "archive-cat",
     title: "ARCHIVE_CAT",
     subtitle: "Hybrid RAG Knowledge Assistant & Persistent Vector Archive",
@@ -307,7 +426,7 @@ export const PROJECTS: Project[] = [
     githubUrl: "https://github.com/Default-Plus/archive-cat-rag",
   },
   {
-    id: "04",
+    id: "05",
     slug: "bowone-portfolio",
     title: "BOWONE Portfolio",
     subtitle: "Artist Portfolio Renewal, Data Schema & CI/CD Security Architecture",
@@ -373,7 +492,7 @@ export const PROJECTS: Project[] = [
     demoUrl: "https://portfolio-bowone.vercel.app/",
   },
   {
-    id: "05",
+    id: "06",
     slug: "exam-hub",
     title: "Exam Hub",
     subtitle: "Structured Exam Quiz & Mistake Review Platform",
@@ -438,7 +557,7 @@ export const PROJECTS: Project[] = [
     demoUrl: "https://exam-hub-gold.vercel.app/",
   },
   {
-    id: "06",
+    id: "07",
     slug: "nsmc-sentiment-lab",
     title: "NSMC Sentiment Lab",
     subtitle: "Pretrained BERT vs. From-Scratch Transformer Comparative Study",

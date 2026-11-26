@@ -297,10 +297,38 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
           </div>
         </section>
 
-        {/* 06 Tech Stack */}
+        {/* 06 Future Roadmap (Optional) */}
+        {project.roadmap && project.roadmap.length > 0 && (
+          <section className="mb-12 space-y-5 sm:mb-16 sm:space-y-6">
+            <h2 className="text-xs font-mono uppercase tracking-[0.3em] text-blue-400">
+              06 {"//"} Future Roadmap &amp; Next Steps
+            </h2>
+            <div className="grid grid-cols-1 gap-3.5 sm:gap-4 md:grid-cols-3">
+              {project.roadmap.map((item) => (
+                <div
+                  key={item.phase}
+                  className="border border-white/10 bg-zinc-950/80 p-5 transition-colors hover:border-emerald-500/40 sm:p-6"
+                >
+                  <span className="text-[10px] font-mono uppercase tracking-[0.22em] text-emerald-400">
+                    {item.phase}
+                  </span>
+                  <h3 className="mt-2 text-sm font-bold text-white sm:text-base">
+                    {item.title}
+                  </h3>
+                  <p className="mt-2 text-xs leading-relaxed text-gray-400">
+                    {item.detail}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </section>
+        )}
+
+        {/* Tech Stack */}
         <section className="mb-14 space-y-4 sm:mb-20">
           <h2 className="text-xs font-mono uppercase tracking-[0.3em] text-blue-400">
-            06 {"//"} Tech Stack
+            {project.roadmap && project.roadmap.length > 0 ? "07" : "06"}{" "}
+            {"//"} Tech Stack
           </h2>
           <div className="flex flex-wrap gap-2">
             {project.techStack.map((tech) => (

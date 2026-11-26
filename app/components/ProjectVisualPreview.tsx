@@ -50,6 +50,50 @@ function SignatureGraphic({ slug }: { slug: string }) {
         </div>
       );
 
+    case "sem-ledger":
+      return (
+        <div className="flex w-full max-w-[270px] flex-col gap-2.5 border border-white/10 bg-black/60 p-3.5 backdrop-blur-sm">
+          <div className="flex items-center justify-between border-b border-white/10 pb-2 text-[9px] font-mono">
+            <div className="flex items-center gap-1.5">
+              <span className="inline-flex h-3.5 w-3.5 items-center justify-center rounded-[3px] border border-white/15 bg-[#0B0F1A]">
+                <svg viewBox="0 0 512 512" className="h-3 w-3">
+                  <circle cx="154" cy="186" r="40" fill="#E2E8F0" fillOpacity="0.35" />
+                  <rect x="218" y="148" width="172" height="76" rx="38" fill="#F8FAFC" />
+                  <rect x="122" y="288" width="172" height="76" rx="38" fill="#3B82F6" />
+                  <circle cx="358" cy="326" r="40" fill="#10B981" />
+                </svg>
+              </span>
+              <span className="font-bold text-white">Sem</span>
+            </div>
+            <span className="text-emerald-400/85">0ms Parser</span>
+          </div>
+
+          <div className="border border-blue-500/35 bg-blue-500/[0.08] px-2.5 py-1.5 font-mono text-[9px]">
+            <div className="text-gray-200">&gt; 어제 초밥 1.8만</div>
+            <div className="mt-1 flex items-center gap-1.5 text-[8px]">
+              <span className="bg-rose-500/20 px-1.5 py-0.5 text-rose-300">-18,000원</span>
+              <span className="bg-white/10 px-1.5 py-0.5 text-gray-300">식비</span>
+              <span className="text-gray-400">어제</span>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-3 gap-1.5 font-mono text-[8px]">
+            <div className="border border-white/10 bg-white/[0.03] px-2 py-1">
+              <div className="text-gray-500">14일</div>
+              <div className="text-emerald-400">+25만</div>
+            </div>
+            <div className="border border-white/10 bg-white/[0.03] px-2 py-1">
+              <div className="text-gray-500">15일</div>
+              <div className="text-emerald-400/70">무지출 ●</div>
+            </div>
+            <div className="border border-blue-500/30 bg-blue-500/10 px-2 py-1">
+              <div className="text-blue-300">오늘</div>
+              <div className="text-rose-300">-17,000</div>
+            </div>
+          </div>
+        </div>
+      );
+
     case "cafe-de-receipt":
       return (
         <div className="flex items-center gap-4">
