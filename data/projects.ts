@@ -49,6 +49,7 @@ export interface Project {
   githubUrl?: string;
   demoUrl?: string;
   releaseUrl?: string;
+  downloadApiPath?: string;
   notionUrl?: string;
 }
 
@@ -146,6 +147,7 @@ export const PROJECTS: Project[] = [
     githubUrl: "https://github.com/Default-Plus/yeobaek",
     demoUrl: "https://yeobaek-theta.vercel.app/",
     releaseUrl: "https://github.com/Default-Plus/yeobaek/releases",
+    downloadApiPath: "/api/download/yeobaek",
   },
   {
     id: "02",

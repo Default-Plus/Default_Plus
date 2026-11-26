@@ -8,6 +8,7 @@ import {
   type ProjectFilterCategory,
 } from "@/data/projects";
 import ProjectVisualPreview from "../components/ProjectVisualPreview";
+import YeobaekDownloadControl from "../components/YeobaekDownloadControl";
 
 export default function ProjectsClient() {
   const [activeFilter, setActiveFilter] =
@@ -140,15 +141,23 @@ export default function ProjectsClient() {
                       Live Demo ↗
                     </a>
                   )}
-                  {item.releaseUrl && (
-                    <a
-                      href={item.releaseUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-xs font-mono font-bold uppercase tracking-wider text-emerald-400 transition-colors hover:text-emerald-300"
-                    >
-                      Releases ↗
-                    </a>
+                  {item.downloadApiPath && item.releaseUrl ? (
+                    <YeobaekDownloadControl
+                      apiPath={item.downloadApiPath}
+                      releasesUrl={item.releaseUrl}
+                      variant="card"
+                    />
+                  ) : (
+                    item.releaseUrl && (
+                      <a
+                        href={item.releaseUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-xs font-mono font-bold uppercase tracking-wider text-emerald-400 transition-colors hover:text-emerald-300"
+                      >
+                        Releases ↗
+                      </a>
+                    )
                   )}
                   {item.notionUrl && (
                     <a

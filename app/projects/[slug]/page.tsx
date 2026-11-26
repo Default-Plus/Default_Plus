@@ -10,6 +10,7 @@ import {
 import { SITE_CONFIG } from "@/data/profile";
 import ProjectVisualPreview from "@/app/components/ProjectVisualPreview";
 import CopyButton from "@/app/components/CopyButton";
+import YeobaekDownloadControl from "@/app/components/YeobaekDownloadControl";
 
 interface CaseStudyPageProps {
   params: Promise<{ slug: string }>;
@@ -124,15 +125,23 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
                 GitHub Repository ↗
               </a>
             )}
-            {project.releaseUrl && (
-              <a
-                href={project.releaseUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center justify-center border border-emerald-500/40 bg-emerald-500/10 px-5 py-3 text-xs font-mono font-bold uppercase tracking-wider text-emerald-300 transition-colors hover:bg-emerald-500/20 sm:py-2.5"
-              >
-                Releases (.exe / .apk) ↗
-              </a>
+            {project.downloadApiPath && project.releaseUrl ? (
+              <YeobaekDownloadControl
+                apiPath={project.downloadApiPath}
+                releasesUrl={project.releaseUrl}
+                variant="hero"
+              />
+            ) : (
+              project.releaseUrl && (
+                <a
+                  href={project.releaseUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center border border-emerald-500/40 bg-emerald-500/10 px-5 py-3 text-xs font-mono font-bold uppercase tracking-wider text-emerald-300 transition-colors hover:bg-emerald-500/20 sm:py-2.5"
+                >
+                  Releases (.exe / .apk) ↗
+                </a>
+              )
             )}
           </div>
         </header>
