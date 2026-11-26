@@ -23,6 +23,16 @@ body {
   font-family: var(--font-sans);
   word-break: keep-all;
   overflow-x: clip;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 ::-webkit-scrollbar {

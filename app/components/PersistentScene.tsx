@@ -134,7 +134,7 @@ export function SceneProvider({ children }: { children: React.ReactNode }) {
         <div
           role="status"
           aria-live="polite"
-          className="fixed bottom-6 right-6 z-[70] border border-white/15 bg-zinc-950/95 px-4 py-2.5 text-xs font-mono tracking-wider text-emerald-400 shadow-2xl backdrop-blur-md"
+          className="fixed right-5 bottom-5 left-5 z-[70] border border-white/15 bg-zinc-950/95 px-4 py-2.5 text-center text-xs font-mono tracking-wider text-emerald-400 shadow-2xl backdrop-blur-md sm:right-6 sm:bottom-6 sm:left-auto sm:text-left"
         >
           ✓ {toastMessage}
         </div>

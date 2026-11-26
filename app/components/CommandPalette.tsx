@@ -190,7 +190,7 @@ export default function CommandPalette() {
       aria-label="Quick command palette"
       onClick={handleClose}
       onKeyDown={handleKeyDown}
-      className="fixed inset-0 z-50 flex items-start justify-center bg-black/75 px-4 pt-[14vh] backdrop-blur-md"
+      className="fixed inset-0 z-50 flex items-start justify-center bg-black/80 px-4 pt-5 backdrop-blur-md sm:pt-[14vh]"
     >
       <div
         onClick={(e) => e.stopPropagation()}
@@ -206,18 +206,18 @@ export default function CommandPalette() {
               setActiveIndex(0);
             }}
             placeholder="Search projects, pages, or actions..."
-            className="w-full bg-transparent text-sm text-white placeholder-gray-500 outline-none"
+            className="w-full bg-transparent text-base text-white placeholder-gray-500 outline-none sm:text-sm"
           />
           <button
             type="button"
             onClick={handleClose}
-            className="ml-3 border border-white/10 px-2 py-0.5 text-[10px] font-mono text-gray-500 hover:text-white"
+            className="ml-3 shrink-0 border border-white/10 px-2.5 py-1 text-[10px] font-mono text-gray-400 hover:text-white"
           >
             ESC
           </button>
         </div>
 
-        <div className="max-h-[55vh] overflow-y-auto py-2">
+        <div className="max-h-[64dvh] overflow-y-auto py-2 sm:max-h-[55vh]">
           {filteredItems.length === 0 ? (
             <div className="px-4 py-8 text-center text-xs font-mono text-gray-500">
               No matching commands for &ldquo;{query}&rdquo;
@@ -242,17 +242,17 @@ export default function CommandPalette() {
                       setActiveIndex(0);
                       item.action();
                     }}
-                    className={`flex w-full items-center justify-between px-4 py-2.5 text-left transition-colors ${
+                    className={`flex w-full items-center justify-between gap-3 px-4 py-3 text-left transition-colors sm:py-2.5 ${
                       isSelected
                         ? "bg-blue-600/15 text-white"
                         : "text-gray-300 hover:bg-white/[0.04]"
                     }`}
                   >
-                    <span className="text-xs md:text-sm font-medium">
+                    <span className="truncate text-sm font-medium sm:text-sm">
                       {item.label}
                     </span>
                     <span
-                      className={`text-[10px] font-mono ${
+                      className={`shrink-0 text-[10px] font-mono ${
                         isSelected ? "text-blue-400" : "text-gray-500"
                       }`}
                     >
@@ -266,7 +266,8 @@ export default function CommandPalette() {
         </div>
 
         <div className="flex items-center justify-between border-t border-white/10 px-4 py-2 text-[10px] font-mono text-gray-600">
-          <span>↑↓ Navigate · Enter Select</span>
+          <span className="sm:hidden">Tap to select</span>
+          <span className="hidden sm:inline">↑↓ Navigate · Enter Select</span>
           <span>DEFAULT_PLUS // CMD</span>
         </div>
       </div>

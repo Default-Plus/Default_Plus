@@ -53,40 +53,41 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
 
   return (
     <div className="min-h-screen page-animate">
-      <main className="mx-auto max-w-5xl px-6 pt-32 pb-28 md:px-12 md:pt-36">
+      <main className="mx-auto max-w-5xl px-5 pt-24 pb-20 sm:px-6 sm:pt-32 md:px-12 md:pt-36 md:pb-28">
         {/* Top Action Bar */}
-        <div className="mb-10 flex flex-wrap items-center justify-between gap-4 border-b border-white/10 pb-5">
+        <div className="mb-8 flex items-center justify-between gap-3 border-b border-white/10 pb-4 sm:mb-10 sm:pb-5">
           <Link
             href="/projects"
-            className="text-xs font-mono uppercase tracking-[0.2em] text-gray-400 transition-colors hover:text-white"
+            className="text-xs font-mono uppercase tracking-[0.18em] text-gray-400 transition-colors hover:text-white sm:tracking-[0.2em]"
           >
-            ← Back to Archive
+            <span className="sm:hidden">← Archive</span>
+            <span className="hidden sm:inline">← Back to Archive</span>
           </Link>
           <CopyButton
             value={shareUrl}
-            label="Copy Case Study Link"
+            label="Copy Link"
             toastText="Case study URL copied"
           />
         </div>
 
         {/* Hero Header */}
-        <header className="mb-12 space-y-6">
-          <div className="flex flex-wrap items-center gap-3 text-[11px] font-mono uppercase tracking-[0.22em]">
+        <header className="mb-10 space-y-5 sm:mb-12 sm:space-y-6">
+          <div className="flex flex-wrap items-center gap-2.5 text-[10px] font-mono uppercase tracking-[0.18em] sm:gap-3 sm:text-[11px] sm:tracking-[0.22em]">
             <span className="text-emerald-400">
               {project.id} {"//"} {project.category}
             </span>
             <span className="text-gray-600">·</span>
             <span className="text-gray-400">{project.year}</span>
-            <span className="border border-white/15 bg-white/[0.04] px-2.5 py-0.5 text-[10px] text-gray-200">
+            <span className="border border-white/15 bg-white/[0.04] px-2 py-0.5 text-[9px] text-gray-200 sm:px-2.5 sm:text-[10px]">
               {project.status}
             </span>
           </div>
 
-          <h1 className="text-4xl font-black tracking-tight md:text-6xl">
+          <h1 className="text-3xl font-black tracking-tight sm:text-4xl md:text-6xl">
             {project.title}
           </h1>
 
-          <p className="text-base leading-relaxed text-gray-300 md:text-xl">
+          <p className="text-sm leading-relaxed text-gray-300 sm:text-base md:text-xl">
             {project.description}
           </p>
 
@@ -102,13 +103,13 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
             )}
           </div>
 
-          <div className="flex flex-wrap items-center gap-3 pt-1">
+          <div className="flex flex-col gap-2.5 pt-1 sm:flex-row sm:flex-wrap sm:items-center sm:gap-3">
             {project.demoUrl && (
               <a
                 href={project.demoUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-white px-5 py-2.5 text-xs font-mono font-bold uppercase tracking-wider text-black transition-colors hover:bg-blue-600 hover:text-white"
+                className="flex items-center justify-center bg-white px-5 py-3 text-xs font-mono font-bold uppercase tracking-wider text-black transition-colors hover:bg-blue-600 hover:text-white sm:py-2.5"
               >
                 Live Deployment ↗
               </a>
@@ -118,7 +119,7 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
                 href={project.githubUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="border border-white/20 bg-white/[0.04] px-5 py-2.5 text-xs font-mono font-bold uppercase tracking-wider text-white transition-colors hover:border-white/50 hover:bg-white/10"
+                className="flex items-center justify-center border border-white/20 bg-white/[0.04] px-5 py-3 text-xs font-mono font-bold uppercase tracking-wider text-white transition-colors hover:border-white/50 hover:bg-white/10 sm:py-2.5"
               >
                 GitHub Repository ↗
               </a>
@@ -128,7 +129,7 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
                 href={project.releaseUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="border border-emerald-500/40 bg-emerald-500/10 px-5 py-2.5 text-xs font-mono font-bold uppercase tracking-wider text-emerald-300 transition-colors hover:bg-emerald-500/20"
+                className="flex items-center justify-center border border-emerald-500/40 bg-emerald-500/10 px-5 py-3 text-xs font-mono font-bold uppercase tracking-wider text-emerald-300 transition-colors hover:bg-emerald-500/20 sm:py-2.5"
               >
                 Releases (.exe / .apk) ↗
               </a>
@@ -137,16 +138,16 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
         </header>
 
         {/* Key Metrics Strip */}
-        <section className="mb-10 grid grid-cols-1 gap-4 sm:grid-cols-3">
+        <section className="mb-8 divide-y divide-white/10 border border-white/10 bg-zinc-950/80 sm:mb-10 sm:grid sm:grid-cols-3 sm:gap-4 sm:divide-y-0 sm:border-0 sm:bg-transparent">
           {project.metrics.map((metric) => (
             <div
               key={metric.label}
-              className="border border-white/10 bg-zinc-950/80 p-5"
+              className="flex items-center justify-between gap-4 px-4 py-3.5 sm:block sm:border sm:border-white/10 sm:bg-zinc-950/80 sm:p-5"
             >
-              <div className="text-[10px] font-mono uppercase tracking-[0.22em] text-gray-500">
+              <div className="text-[10px] font-mono uppercase tracking-[0.2em] text-gray-500">
                 {metric.label}
               </div>
-              <div className="mt-2 text-sm font-bold text-white md:text-base">
+              <div className="text-right text-xs font-bold text-white sm:mt-2 sm:text-left sm:text-sm md:text-base">
                 {metric.value}
               </div>
             </div>
@@ -154,30 +155,30 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
         </section>
 
         {/* Visual Banner */}
-        <div className="group mb-16">
+        <div className="group mb-12 sm:mb-16">
           <ProjectVisualPreview project={project} variant="hero" />
         </div>
 
         {/* 01 Overview */}
-        <section className="mb-16 space-y-4">
+        <section className="mb-12 space-y-3 sm:mb-16 sm:space-y-4">
           <h2 className="text-xs font-mono uppercase tracking-[0.3em] text-blue-400">
             01 {"//"} Overview &amp; Context
           </h2>
-          <p className="text-sm leading-8 text-gray-300 md:text-base">
+          <p className="text-sm leading-7 text-gray-300 sm:leading-8 md:text-base">
             {project.overview}
           </p>
         </section>
 
         {/* 02 System Architecture */}
-        <section className="mb-16 space-y-6">
+        <section className="mb-12 space-y-5 sm:mb-16 sm:space-y-6">
           <h2 className="text-xs font-mono uppercase tracking-[0.3em] text-blue-400">
             02 {"//"} System Architecture
           </h2>
-          <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+          <div className="grid grid-cols-1 gap-3.5 sm:gap-4 md:grid-cols-2">
             {project.architecture.map((step, index) => (
               <div
                 key={step.layer}
-                className="relative border border-white/10 bg-zinc-950/80 p-6 transition-colors hover:border-blue-500/40"
+                className="relative border border-white/10 bg-zinc-950/80 p-5 transition-colors hover:border-blue-500/40 sm:p-6"
               >
                 <div className="mb-2 flex items-center justify-between">
                   <span className="text-[10px] font-mono uppercase tracking-[0.25em] text-emerald-400">
@@ -196,17 +197,19 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
         </section>
 
         {/* 03 Engineering Highlights */}
-        <section className="mb-16 space-y-5">
+        <section className="mb-12 space-y-4 sm:mb-16 sm:space-y-5">
           <h2 className="text-xs font-mono uppercase tracking-[0.3em] text-blue-400">
             03 {"//"} Engineering Highlights
           </h2>
-          <ul className="space-y-3 border border-white/10 bg-zinc-950/70 p-6 md:p-8">
+          <ul className="space-y-3 border border-white/10 bg-zinc-950/70 p-5 sm:p-6 md:p-8">
             {project.highlights.map((point, idx) => (
               <li
                 key={idx}
-                className="flex items-start gap-3 text-sm leading-relaxed text-gray-200 md:text-base"
+                className="flex items-start gap-2.5 text-xs leading-relaxed text-gray-200 sm:gap-3 sm:text-sm md:text-base"
               >
-                <span className="mt-1 font-mono text-xs text-blue-500">→</span>
+                <span className="mt-0.5 font-mono text-xs text-blue-500 sm:mt-1">
+                  →
+                </span>
                 <span>{point}</span>
               </li>
             ))}
@@ -214,7 +217,7 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
         </section>
 
         {/* 04 Key Architectural Decisions */}
-        <section className="mb-16 space-y-6">
+        <section className="mb-12 space-y-5 sm:mb-16 sm:space-y-6">
           <h2 className="text-xs font-mono uppercase tracking-[0.3em] text-blue-400">
             04 {"//"} Key Architectural Decisions
           </h2>
@@ -222,7 +225,7 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
             {project.decisions.map((decision) => (
               <div
                 key={decision.topic}
-                className="space-y-4 border border-white/10 bg-zinc-950/80 p-6 md:p-7"
+                className="space-y-4 border border-white/10 bg-zinc-950/80 p-5 sm:p-6 md:p-7"
               >
                 <h3 className="text-base font-bold text-white md:text-lg">
                   {decision.topic}
@@ -254,7 +257,7 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
         </section>
 
         {/* 05 Troubleshooting */}
-        <section className="mb-16 space-y-6">
+        <section className="mb-12 space-y-5 sm:mb-16 sm:space-y-6">
           <h2 className="text-xs font-mono uppercase tracking-[0.3em] text-blue-400">
             05 {"//"} Troubleshooting Log
           </h2>
@@ -262,7 +265,7 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
             {project.troubleshooting.map((item, idx) => (
               <div
                 key={idx}
-                className="space-y-3 border border-white/10 bg-zinc-950/80 p-6"
+                className="space-y-3 border border-white/10 bg-zinc-950/80 p-5 sm:p-6"
               >
                 <div>
                   <span className="text-[10px] font-mono uppercase tracking-widest text-amber-400">
@@ -286,7 +289,7 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
         </section>
 
         {/* 06 Tech Stack */}
-        <section className="mb-20 space-y-4">
+        <section className="mb-14 space-y-4 sm:mb-20">
           <h2 className="text-xs font-mono uppercase tracking-[0.3em] text-blue-400">
             06 {"//"} Tech Stack
           </h2>
@@ -305,17 +308,17 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
         {/* Adjacent Case Studies */}
         <nav
           aria-label="Adjacent case studies"
-          className="grid grid-cols-1 gap-4 border-t border-white/10 pt-10 sm:grid-cols-2"
+          className="grid grid-cols-1 gap-3.5 border-t border-white/10 pt-8 sm:grid-cols-2 sm:gap-4 sm:pt-10"
         >
           {prev && (
             <Link
               href={`/projects/${prev.slug}`}
-              className="group border border-white/10 bg-zinc-950/70 p-6 transition-colors hover:border-blue-500/40"
+              className="group border border-white/10 bg-zinc-950/70 p-5 transition-colors hover:border-blue-500/40 sm:p-6"
             >
               <div className="text-[10px] font-mono uppercase tracking-widest text-gray-500">
                 ← Previous Project
               </div>
-              <div className="mt-2 text-lg font-bold text-white transition-colors group-hover:text-blue-400">
+              <div className="mt-2 text-base font-bold text-white transition-colors group-hover:text-blue-400 sm:text-lg">
                 {prev.id} · {prev.title}
               </div>
             </Link>
@@ -323,12 +326,12 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
           {next && (
             <Link
               href={`/projects/${next.slug}`}
-              className="group border border-white/10 bg-zinc-950/70 p-6 text-left transition-colors hover:border-blue-500/40 sm:text-right"
+              className="group border border-white/10 bg-zinc-950/70 p-5 text-left transition-colors hover:border-blue-500/40 sm:p-6 sm:text-right"
             >
               <div className="text-[10px] font-mono uppercase tracking-widest text-gray-500">
                 Next Project →
               </div>
-              <div className="mt-2 text-lg font-bold text-white transition-colors group-hover:text-blue-400">
+              <div className="mt-2 text-base font-bold text-white transition-colors group-hover:text-blue-400 sm:text-lg">
                 {next.id} · {next.title}
               </div>
             </Link>

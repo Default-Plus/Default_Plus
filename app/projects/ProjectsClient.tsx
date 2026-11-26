@@ -33,29 +33,29 @@ export default function ProjectsClient() {
 
   return (
     <div className="min-h-screen page-animate">
-      <main className="mx-auto max-w-7xl px-6 pt-32 pb-28 md:px-12 md:pt-40">
-        <header className="mb-14 flex flex-col justify-between gap-8 md:mb-20 md:flex-row md:items-end">
+      <main className="mx-auto max-w-7xl px-5 pt-24 pb-20 sm:px-6 sm:pt-32 md:px-12 md:pt-40 md:pb-28">
+        <header className="mb-10 flex flex-col justify-between gap-5 sm:mb-14 sm:gap-8 md:mb-20 md:flex-row md:items-end">
           <div>
-            <div className="mb-4 text-[10px] font-mono uppercase tracking-[0.4em] text-emerald-400">
+            <div className="mb-3 text-[10px] font-mono uppercase tracking-[0.35em] text-emerald-400 sm:mb-4 sm:tracking-[0.4em]">
               Selected Works · 2026
             </div>
-            <h1 className="text-6xl font-black uppercase leading-none tracking-tighter md:text-8xl lg:text-9xl">
+            <h1 className="text-5xl font-black uppercase leading-none tracking-tighter sm:text-6xl md:text-8xl lg:text-9xl">
               Archive<span className="text-blue-600">.</span>
             </h1>
           </div>
 
-          <p className="max-w-md text-sm leading-relaxed text-gray-400">
+          <p className="max-w-md text-xs leading-relaxed text-gray-400 sm:text-sm">
             기획부터 아키텍처 설계, AI 파이프라인, 크로스플랫폼 배포까지 직접
             구현한 프로젝트 아카이브입니다. 카드를 클릭하면 상세 케이스 스터디로
             이동합니다.
           </p>
         </header>
 
-        {/* Category Filter Tabs */}
+        {/* Category Filter Tabs (Horizontal scroll strip on mobile) */}
         <div
           role="tablist"
           aria-label="Project categories"
-          className="mb-14 flex flex-wrap items-center gap-2 border-y border-white/10 py-4"
+          className="no-scrollbar -mx-5 mb-10 flex flex-nowrap items-center gap-2 overflow-x-auto border-y border-white/10 px-5 py-3.5 sm:mx-0 sm:mb-14 sm:flex-wrap sm:px-0 sm:py-4"
         >
           {PROJECT_FILTERS.map((filter) => {
             const isSelected = activeFilter === filter;
@@ -66,7 +66,7 @@ export default function ProjectsClient() {
                 role="tab"
                 aria-selected={isSelected}
                 onClick={() => setActiveFilter(filter)}
-                className={`inline-flex items-center gap-2 px-4 py-2 text-[11px] font-mono uppercase tracking-widest transition-all ${
+                className={`inline-flex shrink-0 items-center gap-2 px-3.5 py-2 text-[11px] font-mono uppercase tracking-widest transition-all sm:px-4 ${
                   isSelected
                     ? "bg-white font-bold text-black"
                     : "border border-white/10 bg-white/[0.02] text-gray-400 hover:border-white/30 hover:text-white"
@@ -86,16 +86,16 @@ export default function ProjectsClient() {
         </div>
 
         {/* Projects Grid */}
-        <div className="grid grid-cols-1 gap-x-14 gap-y-20 md:grid-cols-2 lg:gap-x-16">
+        <div className="grid grid-cols-1 gap-x-14 gap-y-14 md:grid-cols-2 md:gap-y-20 lg:gap-x-16">
           {filteredProjects.map((item) => (
             <article
               key={item.id}
-              className="group flex flex-col justify-between border-b border-white/10 pb-8"
+              className="group flex flex-col justify-between border-b border-white/10 pb-7 sm:pb-8"
             >
               <div>
                 <Link
                   href={`/projects/${item.slug}`}
-                  className="mb-6 block focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+                  className="mb-5 block focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 sm:mb-6"
                 >
                   <ProjectVisualPreview project={item} variant="card" />
                 </Link>
@@ -109,7 +109,7 @@ export default function ProjectsClient() {
                   </h2>
                 </Link>
 
-                <p className="mb-3 text-sm leading-relaxed text-gray-300">
+                <p className="mb-3 text-xs leading-relaxed text-gray-300 sm:text-sm">
                   {item.description}
                 </p>
 
@@ -118,7 +118,7 @@ export default function ProjectsClient() {
                 </p>
               </div>
 
-              <div className="mt-6 flex flex-wrap items-center justify-between gap-4 border-t border-white/[0.07] pt-4">
+              <div className="mt-5 flex flex-wrap items-center justify-between gap-3 border-t border-white/[0.07] pt-4 sm:mt-6 sm:gap-4">
                 <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
                   {item.githubUrl && (
                     <a

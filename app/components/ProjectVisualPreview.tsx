@@ -179,8 +179,8 @@ export default function ProjectVisualPreview({
     <div
       className={`relative overflow-hidden border border-white/10 bg-zinc-950 ${
         isHero
-          ? "min-h-[260px] p-8 md:min-h-[320px] md:p-10"
-          : "aspect-[16/10] p-5 md:p-6"
+          ? "min-h-[240px] p-5 sm:p-8 md:min-h-[320px] md:p-10"
+          : "min-h-[248px] p-4 sm:aspect-[16/10] sm:min-h-0 sm:p-5 md:p-6"
       } flex flex-col justify-between transition-colors duration-300 group-hover:border-blue-500/40`}
     >
       <div
@@ -198,18 +198,18 @@ export default function ProjectVisualPreview({
         className={`pointer-events-none absolute inset-0 bg-gradient-to-br ${accent.glow} opacity-60 transition-opacity duration-500 group-hover:opacity-100`}
       />
 
-      <div className="relative z-10 flex items-center justify-between gap-3">
-        <span className="text-[10px] font-mono uppercase tracking-[0.22em] text-emerald-400">
+      <div className="relative z-10 flex items-center justify-between gap-2.5">
+        <span className="min-w-0 truncate text-[10px] font-mono uppercase tracking-[0.16em] text-emerald-400 sm:tracking-[0.22em]">
           {project.id} {"//"} {project.category}
         </span>
         <span
-          className={`border px-2 py-0.5 text-[9px] font-mono uppercase tracking-widest ${accent.badge}`}
+          className={`shrink-0 border px-2 py-0.5 text-[9px] font-mono uppercase tracking-widest ${accent.badge}`}
         >
           {project.status} · {project.year}
         </span>
       </div>
 
-      <div className="relative z-10 my-4 flex flex-1 items-center justify-center transition-transform duration-500 ease-out group-hover:scale-[1.03]">
+      <div className="relative z-10 my-3 flex flex-1 items-center justify-center scale-[0.88] transition-transform duration-500 ease-out group-hover:scale-[0.91] sm:my-4 sm:scale-100 sm:group-hover:scale-[1.03]">
         <SignatureGraphic slug={project.slug} />
       </div>
 
@@ -230,7 +230,7 @@ export default function ProjectVisualPreview({
           )}
         </div>
         {!isHero && (
-          <span className="text-[10px] font-mono uppercase tracking-widest text-gray-400 transition-colors group-hover:text-white">
+          <span className="hidden text-[10px] font-mono uppercase tracking-widest text-gray-400 transition-colors group-hover:text-white sm:inline">
             Read Case Study →
           </span>
         )}
